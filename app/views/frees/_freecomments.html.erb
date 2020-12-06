@@ -1,0 +1,23 @@
+<strong>댓글 (<%= @free.freecomments.count %>)</strong>
+  <%= form_tag free_freecomments_path(@free) do %>
+    <br>
+    <div class="input-field">
+      <%= text_area_tag :body, nil, class: "form-control", placeholder: "댓글을 작성해 주세요.", required: true %>
+    </div><br>
+    <div class="input-field">
+      <%= button_tag "작성", class: "btn btn-danger" %>
+    </div>
+  <% end %>
+  <br>
+  <% @freecomments = @free.freecomments.all %>
+  <% if @freecomments.present? %>
+    <% @freecomments.each do |freecomment| %>
+      <span><%= freecomment.user.name %></span>
+      <span><%= time_ago_in_words freecomment.created_at %></span>
+      <p><%= freecomment.body %></p>
+      <% if freecomment.user.id == current_user.id %>
+        <div><%= link_to "삭제", free_freecomment_path(@free, freecomment), method: "delete" %></div>
+      <% end%>  
+      <hr>
+    <% end %>
+  <% end %>

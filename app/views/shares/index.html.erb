@@ -1,0 +1,6 @@
+<p class="badge badge-dark">정보공유 게시판</p> <br>
+<%= link_to "글쓰기", new_share_path, class: "btn btn-success mb-4" %>
+<%= render "share" %>
+<br><br>
+<%= paginate @shares %>
+<br><br>

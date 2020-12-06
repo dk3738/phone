@@ -1,0 +1,24 @@
+<strong>댓글 (<%= @share.sharecomments.count %>)</strong>
+<%= form_tag share_sharecomments_path(@share) do %>
+    <br>
+    <div class="input-field">
+        <%= text_area_tag :content, nil, class: "form-control", placeholder: "댓글을 작성해 주세요.", required: true %>
+    </div>
+    <br>
+    <div class="input-field">
+        <%= button_tag "작성", class: "btn btn-danger" %>
+    </div>
+<% end %>
+<br>
+<% @sharecomments = @share.sharecomments.all %>
+<% if @sharecomments.present? %>
+    <% @sharecomments.each do |sharecomment| %>
+            <span><%= sharecomment.user.name %></span>
+            <span><%= time_ago_in_words sharecomment.created_at %></span>
+            <p><%= sharecomment.content %></p>
+            <% if sharecomment.user.id == current_user.id %>
+                <div><%= link_to "삭제", share_sharecomment_path(@share, sharecomment), method: "delete" %></div>
+            <% end%>  
+            <hr>
+    <% end %>
+<% end %>

@@ -1,0 +1,25 @@
+<div class="container mt-5">
+  <div>
+    <h5><%= @share.title %></h5>
+    <br>
+    작성자: <%= @share.user.email %>
+    / 조회수:  <%= @share.view_count.to_i %>
+  </div>
+  <br>
+  <div>
+    <% (0...@share.images.count).each do |i| %>
+      <p class="text-center"><%= image_tag(@share.thumbnail(i)) if @share.images.present? %></p>
+    <% end %>
+    <%= simple_format @share.description %>
+  </div>
+  <br>
+  <div>
+    <% if current_user && (@share.user == current_user) %>
+      <%= link_to '수정', edit_share_path(@share), class: "btn btn-danger" %> |
+      <%= link_to '삭제', @share, method: :delete, data: {confirm: "삭제 하시겠습니까?"}, class: "btn btn-outline-danger" %> |
+    <% end %>
+    <%= link_to '목록', shares_path, class: "btn btn-danger" %>
+  </div>
+  <br><hr><br>
+  <%= render "/shares/sharecomments" %>
+</div>

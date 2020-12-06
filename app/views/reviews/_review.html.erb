@@ -1,0 +1,23 @@
+
+<div class="row">
+  <% @reviews.each do |review| %>
+    <div class="col-lg-3 col-md-6 col-xs-12">
+      <div class="card">
+        <%= link_to review do %>
+          <div>
+            <% if review.images.present? %>
+              <%= image_tag(review.thumbnail(0), :class => "thumbnail_img") %>
+            <% else %>
+              <%= image_tag("http://via.placeholder.com/253x300?text=No+Image") %>
+            <% end %>
+          </div>
+          <div class="card-body text-dark pb-0">
+            <h6 class="card-title"><%= truncate review.title, length: 50 %></h6>
+            <p class="small">No. <%= review.id %><br><%= time_ago_in_words review.created_at %> 전, 조회수 <%= review.view_count.to_i %></p>
+          </div>
+        <% end %>
+      </div>
+      <br>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,27 @@
+<div class="container mt-5">
+  <div>
+    <h5><%= @review.title %></h5>
+    <br>
+    작성자: <%= @review.user.email %>
+    / 조회수:  <%= @review.view_count.to_i %>
+  </div>
+  <br>
+  <div>
+    <% (0...@review.images.count).each do |i| %>
+      <p class="text-center"><%= image_tag(@review.thumbnail(i)) if @review.images.present? %></p>
+    <% end %>
+    <%= simple_format @review.description %>
+  </div>
+  <br>
+  <div>
+    <% if current_user && (@review.user == current_user) %>
+      <%= link_to '수정', edit_review_path(@review), class: "btn btn-danger" %> |
+      <%= link_to '삭제', @review, method: :delete, data: {confirm: "삭제 하시겠습니까?"}, class: "btn btn-outline-danger" %> |
+    <% end %>
+    <%= link_to '목록', reviews_path, class: "btn btn-danger" %>
+  </div>
+  <br><hr><br>
+  <div>
+  <%= render "/reviews/reviewcomments" %>
+  </div>
+</div>

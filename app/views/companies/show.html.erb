@@ -1,0 +1,26 @@
+<div class="container">
+  <div>
+    <h5><%= @company.title %></h5>
+    <br>
+    <%= @company.user.status %>
+    작성자: <%= @company.user.email %>
+    / 조회수:  <%= @company.view.to_i %>
+  </div>
+  <br>
+  <div>
+    <% (0...@company.images.count).each do |i| %>
+      <p  class="text-center"><%= image_tag(@company.thumbnail(i)) if @company.images.present? %></p>
+    <% end %> 
+    <%= simple_format @company.description %>
+  </div>
+  <br>
+  <div>
+    <% if current_user && (@company.user == current_user) %>
+      <%= link_to '수정', edit_company_path(@company), class: "btn btn-danger" %> |
+      <%= link_to '삭제', @company, method: :delete, data: {confirm: "삭제 하시겠습니까?"}, class: "btn btn-outline-danger" %> |
+    <% end %>
+    <%= link_to '목록', companies_path, class: "btn btn-danger" %> 
+  </div>
+  <br><hr><br>
+  <%= render "/companies/comcomments" %>
+</div>

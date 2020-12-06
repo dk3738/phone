@@ -1,0 +1,8 @@
+<p class="badge badge-dark">온라인 정책 게시판</p> <br>
+<% if current_user.status == "업체" %>
+    <%= link_to "글쓰기", new_online_path, class: "btn btn-success mb-4" %>
+<% end %>
+<%= render "online" %>
+<br><br>
+<%= paginate @onlines %>
+<br><br>

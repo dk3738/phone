@@ -1,0 +1,26 @@
+<table class="table table-hover">
+  <thead>
+      <tr>
+          <th scope="col-1">No.</th>
+          <th scope="col-6" class="text-center">제목</th>
+          <th scope="col-2">작성자</th>
+          <th scope="col-2">작성시간</th>
+          <th scope="col-1">조회수</th>
+      </tr>
+  </thead>
+  <tbody>
+      <% @shares.each do |share| %>
+      <tr>
+          <th scope="row"><%= share.id %></th>
+          <td>
+              <%= link_to share, class: "text-muted" do %>
+              <span><strong><%= truncate share.title, length: 50 %></strong></span>
+              <% end %>
+          </td>   
+          <td><%= share.user.name %></td>
+          <td><%= time_ago_in_words share.created_at %> 전</td>
+          <td><%= share.view_count.to_i %></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,14 @@
+<div class="row">
+  <% @onlines.each do |online| %>
+    <div class="card text-center p-2 col-lg-6 col-xs-12 mb-4">
+      <%= link_to online do %>
+        <div class="card-header text-white bg-secondary">
+          <h6><%= online.id %>. <%= truncate online.title, length: 50 %></h6>
+        </div>
+      <% end %>     
+        <div class="card-footer text-muted">
+          <%= time_ago_in_words online.created_at %> 전 / 조회수 <%= online.view_count.to_i %>회
+        </div>        
+    </div>
+<% end %>
+</div>

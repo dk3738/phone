@@ -1,0 +1,23 @@
+<strong>댓글 (<%= @review.reviewcomments.count %>)</strong>
+<%= form_tag review_reviewcomments_path(@review) do %>
+    <br>
+    <div class="input-field">
+        <%= text_area_tag :content, nil, class: "form-control", placeholder: "댓글을 작성해 주세요.", required: true %>
+    </div>
+    <br>
+    <div class="input-field">
+        <%= button_tag "작성", class: "btn btn-danger" %>
+    </div>
+<% end %>
+<br>
+<% if @review.reviewcomments.present? %>
+    <% @review.reviewcomments.each do |reviewcomment| %>
+        <span><%= reviewcomment.user.name %></span>
+        <span><%= time_ago_in_words reviewcomment.created_at %></span>
+        <p><%= reviewcomment.content %></p>
+        <% if reviewcomment.user.id == current_user.id %>
+            <div><%= link_to "삭제", review_reviewcomment_path(@review, reviewcomment), method: "delete" %></div>
+        <% end%>  
+        <hr>
+    <% end %>
+<% end %>

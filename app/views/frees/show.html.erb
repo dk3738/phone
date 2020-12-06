@@ -1,0 +1,25 @@
+<div class="container mt-5">
+  <div>
+    <h5><%= @free.title %></h5>
+    <br>
+    작성자: <%= @free.user.name %>
+    / 조회수:  <%= @free.view_count.to_i %>
+  </div>
+  <br>
+  <div>
+    <% (0...@free.images.count).each do |i| %>
+      <p class="text-center"><%= image_tag(@free.thumbnail(i)) if @free.images.present? %></p>
+    <% end %>
+    <%= simple_format @free.description %>
+  </div>
+  <br>
+  <div>
+    <% if current_user && (@free.user == current_user) %>
+      <%= link_to '수정', edit_free_path(@free), class: "btn btn-danger" %> |
+      <%= link_to '삭제', @free, method: :delete, data: {confirm: "삭제 하시겠습니까?"}, class: "btn btn-outline-danger" %> |
+    <% end %>
+    <%= link_to '목록', frees_path, class: "btn btn-danger" %> 
+  </div>
+  <br><hr><br>
+  <%= render "/frees/freecomments" %>
+</div>

@@ -1,0 +1,27 @@
+<div class="container">
+  <div>
+    <h5><%= @online.title %></h5>
+    <br>
+    작성자: <%= @online.user.name %>
+    / 조회수: <%= @online.view_count.to_i %>
+  </div>
+  <br>
+  <div>
+    <% (0...@online.images.count).each do |i| %>
+      <p class="text-center"><%= image_tag(@online.thumbnail(i)) if @online.images.present? %></p>
+    <% end %>
+    <%= simple_format @online.description %>
+  </div>
+  <br>
+  <div>
+    <% if current_user && (@online.user == current_user) %>
+      <%= link_to '수정', edit_online_path(@online), class: "btn btn-danger" %> |
+      <%= link_to '삭제', @online, method: :delete, data: {confirm: "삭제 하시겠습니까?"}, class: "btn btn-outline-danger" %> |
+    <% end %>
+    <%= link_to '목록', onlines_path, class: "btn btn-danger" %>
+  </div>
+  <br><br>
+  <div id="comments">
+    <%= render "onlines/comments" %>
+  </div>
+</div>

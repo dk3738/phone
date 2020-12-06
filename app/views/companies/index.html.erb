@@ -1,0 +1,8 @@
+<p class="badge badge-dark">전국성지 게시판</p> <br>
+<% if current_user.status == "업체" %>
+    <%= link_to "글쓰기", new_company_path, class: "btn btn-success mb-4" %>
+<% end %>
+<%= render "company" %>
+<br><br>
+<%= paginate @companies %>
+<br><br>

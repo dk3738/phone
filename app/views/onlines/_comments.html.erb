@@ -1,0 +1,25 @@
+<strong>댓글 (<%= @online.comments.count %>)</strong>
+<%= form_tag online_comments_path(@online) do %>
+    <br>
+    <div class="input-field">
+        <%= text_area_tag :body, nil, class: "form-control", placeholder: "댓글을 작성해 주세요.", required: true %>
+    </div>
+    <br>
+    <div class="input-field">
+        <%= button_tag "작성", class: "btn btn-danger" %>
+    </div>
+<% end %>
+<br>
+<% if @online.comments.present? %>
+    <% @online.comments.each do |comment| %>
+        <span><%= comment.user.name %></span>
+        <span><%= time_ago_in_words comment.created_at %></span>
+        <p><%= comment.body %></p>
+        <% if comment.user.id == current_user.id %>
+            <div><%= link_to "삭제", online_comment_path(@online, comment), method: "delete" %></div>
+        <% end%>  
+        <hr>
+    <% end %>
+<% end %>
+  
+  

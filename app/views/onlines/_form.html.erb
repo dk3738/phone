@@ -1,0 +1,31 @@
+<%= form_with(model: online, local: true) do |form| %>
+  <% if online.errors.any? %>
+    <div id="error_explanation">
+      <h2>빈칸을 모두 채워주세요.</h2>
+      <ul>
+        <% online.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <br><br>
+  <div class="form-group">
+    <%= form.label :"제목" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+  <br>
+  <div class="field">
+    <%= form.label :"이미지 첨부" %><br>
+    <%= form.file_field :images, :multiple => true, class: "btn btn-danger" %>
+  </div>
+  <br><hr><br>
+  <div class="form-grup">
+    <%= form.label :"내용" %>
+    <%= form.text_area :description, class: "newcontentbox" %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= form.submit "저장", class: "btn btn-danger" %>
+  </div><br>
+<% end %>

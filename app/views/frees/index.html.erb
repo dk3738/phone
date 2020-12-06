@@ -1,0 +1,6 @@
+<p class="badge badge-dark">자유 게시판</p> <br>
+<%= link_to "글쓰기", new_free_path, class: "btn btn-success mb-4" %>
+<%= render "free" %>
+<br><br>
+<%= paginate @frees %>
+<br><br>

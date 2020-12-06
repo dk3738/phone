@@ -1,0 +1,23 @@
+<strong>댓글 (<%= @company.comcomments.count %>)</strong>
+  <%= form_tag company_comcomments_path(@company) do %>
+    <br>
+    <div class="input-field">
+      <%= text_area_tag :content, nil, class: "form-control", placeholder: "댓글을 작성해 주세요.", required: true %>
+    </div><br>
+    <div class="input-field">
+      <%= button_tag "작성", class: "btn btn-danger" %>
+    </div>
+  <% end %>
+  <br>
+  <% @comcomments = @company.comcomments.all %>
+  <% if @comcomments.present? %>
+    <% @comcomments.each do |comcomment| %>
+      <span><%= comcomment.user.name %></span>
+      <span><%= time_ago_in_words comcomment.created_at %></span>
+      <p><%= comcomment.content %></p>
+      <% if comcomment.user.id == current_user.id %>
+        <div><%= link_to "삭제", company_comcomment_path(@company, comcomment), method: "delete" %></div>
+      <% end%>
+      <hr>  
+    <% end %>
+  <% end %>

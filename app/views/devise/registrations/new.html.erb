@@ -1,0 +1,40 @@
+<div class="container mt-5">
+  <h2>회원가입</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="form-grup">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+    </div>
+    <br>
+    <div class="form-grup">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> 자리 이상 입력해주세요.)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+    </div>
+    <br>
+    <div class="form-grup">
+      <%= f.label :password_confirmation %><br/>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+    </div>
+    <br>
+    <div class="form-grup">
+      <%= f.label :"닉네임" %><br/>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <br>
+    <div class="form-grup">
+      <%= f.label :"상태" %>( "개인 / 업체" 정확히 체크해주세요.)<br/>
+      <%= f.select :status, User.statuses.keys, class: "form-control" %>
+    </div>
+    <br><br>
+    <div class="actions">
+      <%= f.submit "저장" %>
+    </div>
+  <% end %>
+
+</div>
