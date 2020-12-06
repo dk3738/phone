@@ -7,7 +7,7 @@ class Free < ApplicationRecord
   paginates_per 15
 
   def thumbnail input
-    return self.images[input].variant(resize: '100%').processed
+    return self.images[input].variant(resize: '800').processed
   end
 
 end

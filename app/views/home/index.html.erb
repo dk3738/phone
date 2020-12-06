@@ -42,14 +42,14 @@
     <div class="col-md mx-auto my-4 border border-primary rounded">
         <%= link_to "전국 성지", companies_path, class: "badge badge-primary col-12 m-auto" %>
         <% @companies.each do |c| %>
-            <p class="border border-1 m-1 text-dark"><%= c.id %>. <%= truncate c.title %></p>
+            <p class="border border-1 m-1 text-dark"><%= c.id %>. <%= truncate c.title, length: 40%></p>
         <% end %>
     </div>
         
     <div class="col-md mx-auto my-4 border border-success rounded">
         <%= link_to "온라인 정책", onlines_path, class: "badge badge-success col-12 m-auto" %>
         <% @onlines.each do |o| %>
-            <p class="border border-1 m-1 text-dark"><%= o.id %>. <%= truncate o.title %></p>
+            <p class="border border-1 m-1 text-dark"><%= o.id %>. <%= truncate o.title, length: 40 %></p>
     <% end %>
     </div>
 </div>
@@ -57,14 +57,14 @@
     <div class="col-md mx-auto my-4 border border-warning rounded">
         <%= link_to "자유 게시판", frees_path, class: "badge badge-warning col-12 m-auto" %>
         <% @frees.each do |f| %>
-            <p class="border border-1 m-1 text-dark"><%= f.id %>. <%= truncate f.title %></p>
+            <p class="border border-1 m-1 text-dark"><%= f.id %>. <%= truncate f.title, length: 40 %></p>
         <% end %>
     </div>
 
     <div class="col-md mx-auto my-4 border border-danger rounded">
         <%= link_to "정보공유", shares_path, class: "badge badge-danger col-12 m-auto" %>
         <% @shares.each do |s| %>
-            <p class="border border-1 m-1 text-dark"><%= s.id %>. <%= truncate s.title %></p>
+            <p class="border border-1 m-1 text-dark"><%= s.id %>. <%= truncate s.title, length: 40 %></p>
     <% end %>
     </div>
 </div>

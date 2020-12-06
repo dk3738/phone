@@ -13,7 +13,7 @@
           </div>
           <div class="card-body text-dark pb-0">
             <h6 class="card-title"><%= truncate review.title, length: 50 %></h6>
-            <p class="small">No. <%= review.id %><br><%= time_ago_in_words review.created_at %> 전, 조회수 <%= review.view_count.to_i %></p>
+            <p class="small">No. <%= review.id %><br><%= review.created_at.strftime('%m/%d %H:%M') %> / 조회수 <%= review.view_count.to_i %></p>
           </div>
         <% end %>
       </div>

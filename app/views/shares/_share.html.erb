@@ -18,7 +18,7 @@
               <% end %>
           </td>   
           <td><%= share.user.name %></td>
-          <td><%= time_ago_in_words share.created_at %> 전</td>
+          <td><%= share.created_at.strftime('%m/%d %H:%M') %></td>
           <td><%= share.view_count.to_i %></td>
       </tr>
       <% end %>

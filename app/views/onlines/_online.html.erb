@@ -7,7 +7,7 @@
         </div>
       <% end %>     
         <div class="card-footer text-muted">
-          <%= time_ago_in_words online.created_at %> 전 / 조회수 <%= online.view_count.to_i %>회
+          <%= online.created_at.strftime('%Y-%m-%d %H:%M') %> / 조회수 <%= online.view_count.to_i %>회
         </div>        
     </div>
 <% end %>
