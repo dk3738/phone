@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   skip_before_action :login_user
+  
   def index
     @companies = Company.all.order(created_at: :desc).limit(5)
     @onlines = Online.all.order(created_at: :desc).limit(5)

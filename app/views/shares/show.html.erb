@@ -2,7 +2,7 @@
   <div>
     <h5><%= @share.title %></h5>
     <br>
-    작성자: <%= @share.user.email %>
+    작성자: <%= @share.user.name %>
     / 조회수:  <%= @share.view_count.to_i %>
   </div>
   <br>
@@ -21,5 +21,5 @@
     <%= link_to '목록', shares_path, class: "btn btn-danger" %>
   </div>
   <br><hr><br>
-  <%= render "/shares/sharecomments" %>
+  <%= render partial: "comments/template", locals: {commentable: @share, new_comment: @comment} %>
 </div>

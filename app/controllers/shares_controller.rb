@@ -9,6 +9,7 @@ class SharesController < InheritedResources::Base
   end
 
   def show
+    @new_comment  = Comment.build_from(@share, current_user.id, "")
     @share.increment!(:view_count)
   end
 

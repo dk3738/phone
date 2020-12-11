@@ -4,10 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates_presence_of :name, :email, :password, :status
+  validates_uniqueness_of :name
+  validates_presence_of :name, :email
 
   has_many :home
-  has_many :comments
+  has_many :oncomments
   has_many :comcomments
   has_many :freecomments
   has_many :sharecomments

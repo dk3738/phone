@@ -3,7 +3,7 @@
     <h5><%= @company.title %></h5>
     <br>
     <%= @company.user.status %>
-    작성자: <%= @company.user.email %>
+    작성자: <%= @company.user.name %>
     / 조회수:  <%= @company.view.to_i %>
   </div>
   <br>
@@ -22,5 +22,6 @@
     <%= link_to '목록', companies_path, class: "btn btn-danger" %> 
   </div>
   <br><hr><br>
-  <%= render "/companies/comcomments" %>
+  <%= render partial: "comments/template", locals: {commentable: @company, new_comment: @comment} %>
+  <br><br>
 </div>

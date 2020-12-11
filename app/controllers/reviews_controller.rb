@@ -9,6 +9,7 @@ class ReviewsController < InheritedResources::Base
   end
 
   def show
+    @new_comment  = Comment.build_from(@review, current_user.id, "")
     @review.increment!(:view_count)
   end
 

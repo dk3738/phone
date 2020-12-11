@@ -12,7 +12,8 @@ class OnlinesController < ApplicationController
   # GET /onlines/1
   # GET /onlines/1.json
   def show
-      @online.increment!(:view_count)
+    @new_comment  = Comment.build_from(@online, current_user.id, "")
+    @online.increment!(:view_count)
   end
 
   # GET /onlines/new

@@ -18,7 +18,7 @@
                 <% end %>
             </td>   
             <td><%= free.user.name %></td>
-            <td><%= time_ago_in_words free.created_at %> 전</td>
+            <td class="small text-muted"><%= free.created_at.strftime('%m/%d %H:%M') %></td>
             <td><%= free.view_count.to_i %></td>
         </tr>
         <% end %>

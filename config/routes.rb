@@ -3,13 +3,14 @@ Rails.application.routes.draw do
   devise_for :users
   ActiveAdmin.routes(self)
   
-  resources :home
+  resources :home, only: [:show]
+  resources :comments, only: [:create, :destroy]
   resources :reviews do
     resources :reviewcomments, only: [:create, :destroy]
   end
   
   resources :onlines do
-    resources :comments, only: [:create, :destroy]
+    resources :oncomments, only: [:create, :destroy]
   end
   
   resources :shares do

@@ -21,5 +21,5 @@
     <%= link_to '목록', frees_path, class: "btn btn-danger" %> 
   </div>
   <br><hr><br>
-  <%= render "/frees/freecomments" %>
+  <%= render partial: "comments/template", locals: {commentable: @free, new_comment: @comment} %>
 </div>

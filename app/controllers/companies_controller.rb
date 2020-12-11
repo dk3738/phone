@@ -8,6 +8,7 @@ class CompaniesController < InheritedResources::Base
   end
 
   def show
+    @new_comment  = Comment.build_from(@company, current_user.id, "")
     @company.increment!(:view)
   end
 

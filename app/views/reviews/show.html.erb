@@ -2,7 +2,7 @@
   <div>
     <h5><%= @review.title %></h5>
     <br>
-    작성자: <%= @review.user.email %>
+    작성자: <%= @review.user.name %>
     / 조회수:  <%= @review.view_count.to_i %>
   </div>
   <br>
@@ -22,6 +22,6 @@
   </div>
   <br><hr><br>
   <div>
-  <%= render "/reviews/reviewcomments" %>
+    <%= render partial: "comments/template", locals: {commentable: @review, new_comment: @comment} %>
   </div>
 </div>

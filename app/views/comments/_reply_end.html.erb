@@ -1,0 +1,11 @@
+<% comments.each do |comment| %>  
+    <div class="comments-show">
+        <div class="comment">
+            <%= comment.user != nil ? comment.user.name : comment.email %> / <%= time_ago_in_words(comment.created_at) %>전 [ <%= comment.created_at.strftime('%Y-%m-%d %H:%M') %> ]
+            <%= content_tag(:div, comment.body, style: "white-space: pre-wrap;") %><br>
+            <% if comment.user.id == current_user.id %>
+                <%= link_to "삭제", comment_path(comment), method: :delete, remote: false, data: { confirm: "삭제 하시겠습니까?" }, class: "btn btn-danger btn-sm float" %>
+            <% end %>
+        </div>
+    </div>
+<% end %>

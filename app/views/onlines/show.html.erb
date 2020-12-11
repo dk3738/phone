@@ -20,8 +20,6 @@
     <% end %>
     <%= link_to '목록', onlines_path, class: "btn btn-danger" %>
   </div>
-  <br><br>
-  <div id="comments">
-    <%= render "onlines/comments" %>
-  </div>
+  <br><hr><br>
+  <%= render partial: "comments/template", locals: {commentable: @online, new_comment: @comment} %>
 </div>

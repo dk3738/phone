@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_05_082919) do
+ActiveRecord::Schema.define(version: 2020_12_11_171754) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -80,12 +80,19 @@ ActiveRecord::Schema.define(version: 2020_12_05_082919) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "online_id", null: false
-    t.integer "user_id", null: false
+    t.integer "commentable_id"
+    t.string "commentable_type"
+    t.string "name"
+    t.string "title"
     t.text "body"
+    t.string "subject"
+    t.integer "user_id", null: false
+    t.integer "parent_id"
+    t.integer "lft"
+    t.integer "rgt"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["online_id"], name: "index_comments_on_online_id"
+    t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -138,6 +145,16 @@ ActiveRecord::Schema.define(version: 2020_12_05_082919) do
     t.index ["review_id"], name: "index_homes_on_review_id"
     t.index ["share_id"], name: "index_homes_on_share_id"
     t.index ["user_id"], name: "index_homes_on_user_id"
+  end
+
+  create_table "oncomments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "online_id", null: false
+    t.text "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["online_id"], name: "index_oncomments_on_online_id"
+    t.index ["user_id"], name: "index_oncomments_on_user_id"
   end
 
   create_table "onlines", force: :cascade do |t|
@@ -212,8 +229,6 @@ ActiveRecord::Schema.define(version: 2020_12_05_082919) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "comments", "onlines"
-  add_foreign_key "comments", "users"
   add_foreign_key "companies", "users"
   add_foreign_key "freecomments", "frees"
   add_foreign_key "freecomments", "users"
@@ -224,6 +239,8 @@ ActiveRecord::Schema.define(version: 2020_12_05_082919) do
   add_foreign_key "homes", "reviews"
   add_foreign_key "homes", "shares"
   add_foreign_key "homes", "users"
+  add_foreign_key "oncomments", "onlines"
+  add_foreign_key "oncomments", "users"
   add_foreign_key "onlines", "users"
   add_foreign_key "reviewcomments", "reviews"
   add_foreign_key "reviewcomments", "users"

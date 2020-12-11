@@ -8,6 +8,7 @@ class FreesController < InheritedResources::Base
   end
 
   def show
+    @new_comment  = Comment.build_from(@free, current_user.id, "")
     @free.increment!(:view_count)
   end
 
