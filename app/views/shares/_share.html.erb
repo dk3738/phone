@@ -18,7 +18,7 @@
               <% end %>
           </td>   
           <td><%= share.user.name %></td>
-          <td class="small text-muted"><%= share.created_at.strftime('%m/%d %H:%M') %></td>
+          <td class="text-muted"><%= share.created_at.strftime('%m/%d %H:%M') %></td>
           <td><%= share.view_count.to_i %></td>
       </tr>
       <% end %>
