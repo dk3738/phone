@@ -6,30 +6,29 @@
             <% if comment.user.id == current_user.id %>
                 <%= link_to "삭제", comment_path(comment), method: :delete, remote: false, data: { confirm: "삭제 하시겠습니까?" }, class: "btn btn-danger btn-sm" %>
             <% end %>
-        
-            <div class="comment-nav" align="right">
-                <a class="btn btn-secondary btn-sm" onclick="showHide('comment_reply_<%= comment.id %>')" onfocus="this.blur()">답글</a>
-            </div>
+            <a class="btn btn-success btn-sm" onclick="showHide('comment_reply_<%= comment.id %>')" onfocus="this.blur()">답글</a>
+        </div>
             
-            <div id="comment_reply_<%= comment.id %>" style="display:none;">
-                <div class="reply-form">
-                    <%= form_for @new_comment do |f| %>
-                        <%= f.hidden_field :commentable_id, value: @new_comment.commentable_id %>
-                        <%= f.hidden_field :commentable_type, value: @new_comment.commentable_type %>
-                        <%= f.hidden_field :comment_id, value: comment.id %>
-                        <div class="field form-group">
+        <div id="comment_reply_<%= comment.id %>" style="display:none;">
+            <div class="reply-form mt-3">
+                <%= form_for @new_comment do |f| %>
+                    <%= f.hidden_field :commentable_id, value: @new_comment.commentable_id %>
+                    <%= f.hidden_field :commentable_type, value: @new_comment.commentable_type %>
+                    <%= f.hidden_field :comment_id, value: comment.id %>
+                    
+                    <div class="field form-group">
                         <%= f.text_area :body, class: 'form-control' %>
-                        </div>
-                        <div class="field form-group" style="margin-bottom: 60px">
-                            <%= submit_tag "답글쓰기", class: "btn btn-primary btn-sm" %>
-                        </div>
-                    <% end %>
-                </div>
+                    </div>
+                    
+                    <div class="field form-group" style="margin-bottom: 60px">
+                        <%= submit_tag "답글쓰기", class: "btn btn-primary btn-sm" %>
+                    </div>
+                <% end %>
             </div>
         </div>
-        <div style="margin-left: 100px;">
-            <%= render partial: "comments/reply_end", locals: {comments: comment.children} %>
-        </div>
+    </div>
+    <div style="margin-left: 100px;">
+        <%= render partial: "comments/reply_end", locals: {comments: comment.children} %>
     </div>
     <hr/>
 <% end %>

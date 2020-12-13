@@ -55,7 +55,7 @@
 </div>
 <div class="row">
     <div class="col-md mx-auto my-4 border border-warning rounded bg-white">
-        <%= link_to "자유 게시판", frees_path, class: "badge badge-warning col-12 m-auto" %>
+        <%= link_to "자유 게시판", frees_path, class: "badge badge-warning text-white col-12 m-auto" %>
         <% @frees.each do |f| %>
             <p class="m-0 p-2">ㆍ <%= truncate f.title, length: 40 %></p><hr class="m-0">
         <% end %>

@@ -11,6 +11,7 @@ gem 'carrierwave'
 gem 'kaminari'
 gem 'activeadmin'
 gem 'acts_as_commentable_with_threading'
+gem 'unread'
 
           
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

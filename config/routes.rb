@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users
   ActiveAdmin.routes(self)
+
+  get '/new_notifications/read_all' => 'new_notifications#read_all'
+  resources :new_notifications
   
   resources :home, only: [:show]
   resources :comments, only: [:create, :destroy]

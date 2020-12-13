@@ -7,6 +7,9 @@ class User < ApplicationRecord
   validates_uniqueness_of :name
   validates_presence_of :name, :email
 
+  acts_as_reader
+  has_many :new_notifications
+
   has_many :home
   has_many :oncomments
   has_many :comcomments
